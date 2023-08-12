@@ -4,8 +4,9 @@
   "description": "A dead simple data fetcher",
   "type": "module",
   "main": "lib/index.js",
+  "types": "types/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "generate-types": "tsc"
   },
   "repository": {
     "type": "git",
@@ -25,5 +26,10 @@
   "homepage": "https://github.com/frolleks/cache-fetcher#readme",
   "dependencies": {
     "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.10",
+    "@types/react": "^18.2.20",
+    "typescript": "^5.1.6"
   }
 }
