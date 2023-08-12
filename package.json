@@ -24,6 +24,12 @@
     "url": "https://github.com/frolleks/cache-fetcher/issues"
   },
   "homepage": "https://github.com/frolleks/cache-fetcher#readme",
+  "files": [
+    "LICENSE",
+    "package.json",
+    "lib/",
+    "types/"
+  ],
   "dependencies": {
     "react": "^18.2.0"
   },
