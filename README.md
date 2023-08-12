@@ -5,7 +5,9 @@ A dead simple data fetcher for JavaScript and React.
 ## Installation
 
 **npm:** `npm i cache-fetcher`
+
 **yarn:** `yarn add cache-fetcher`
+
 **pnpm:** `pnpm add cache-fetcher`
 
 ## Usage
