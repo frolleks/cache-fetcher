@@ -5,6 +5,18 @@
   "type": "module",
   "main": "lib/index.js",
   "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js",
+      "import": "./lib/index.js",
+      "types": "./types/index.d.ts"
+    },
+    "./react": {
+      "default": "./lib/react/index.js",
+      "import": "./lib/react/index.js",
+      "types": "./types/react/index.d.ts"
+    }
+  },
   "scripts": {
     "generate-types": "tsc",
     "prepare": "husky install",
