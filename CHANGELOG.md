@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/frolleks/cache-fetcher/compare/v0.1.1...v0.2.0) (2023-08-12)
+
+
+### Features
+
+* add PUT and DELETE methods ([678912d](https://github.com/frolleks/cache-fetcher/commit/678912d3c1889840b0be048f0b030368923fc68a))
+
 ### 0.1.1 (2023-08-12)
 
 
