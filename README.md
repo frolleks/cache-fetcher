@@ -1,5 +1,7 @@
 # cache-fetcher
 
+[![npm](https://img.shields.io/npm/v/cache-fetcher)](https://npmjs.org/package/cache-fetcher)
+
 A dead simple data fetcher for JavaScript and React.
 
 ## Installation
