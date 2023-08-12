@@ -1,0 +1,29 @@
+{
+  "name": "cache-fetcher",
+  "version": "0.1.0",
+  "description": "A dead simple data fetcher",
+  "type": "module",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frolleks/cache-fetcher.git"
+  },
+  "keywords": [
+    "cache-fetcher",
+    "fetch",
+    "http",
+    "requests"
+  ],
+  "author": "Frolleks",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/frolleks/cache-fetcher/issues"
+  },
+  "homepage": "https://github.com/frolleks/cache-fetcher#readme",
+  "dependencies": {
+    "react": "^18.2.0"
+  }
+}
