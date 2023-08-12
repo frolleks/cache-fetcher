@@ -1,1 +1,1 @@
-export { useCacheFetcher } from "./use-cache-fetcher";
+export { useCacheFetcher, useDeleteFetcher, usePostFetcher, usePutFetcher } from "./use-cache-fetcher.js";
