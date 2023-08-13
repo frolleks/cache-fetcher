@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { cacheFetcher } from "../cache-fetcher";
-import { AxiosRequestConfig } from "axios";
+import { Options } from "redaxios";
 
 /**
  * Custom hook to fetch data from the given URL using GET method
  * @param {string} url - The URL to fetch
- * @param {AxiosRequestConfig} [options={}] - Additional options for the fetch request
+ * @param {Options} [options={}] - Additional options for the fetch request
  * @return {{data: *, isLoading: boolean, isError: boolean, error: unknown}} The fetched data or an error
  */
-export function useCacheFetcher(url: string, options: AxiosRequestConfig = {}) {
+export function useCacheFetcher(url: string, options: Options = {}) {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -124,9 +124,10 @@ export function usePutFetcher() {
 
 /**
  * Custom hook to delete data from the server using the DELETE method
- * @return {{isSubmitting: boolean, isError: boolean, error: unknown, del: function(string, Object): Promise<void>}} An object containing the DELETE submission state, and a function to initiate the DELETE request
+ * @return {{data: *, isSubmitting: boolean, isError: boolean, error: unknown, del: function(string, Object): Promise<void>}} An object containing the DELETE submission state, and a function to initiate the DELETE request
  */
 export function useDeleteFetcher() {
+  const [data, setData] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState<unknown>(null);
@@ -143,14 +144,10 @@ export function useDeleteFetcher() {
     setError(null);
 
     try {
-      const response = await fetch(url, {
-        method: "DELETE",
+      const result = await cacheFetcher.delete(url, {
         ...options,
       });
-
-      if (!response.ok) {
-        throw new Error(`An error occurred: ${response.statusText}`);
-      }
+      setData(result.data);
     } catch (e) {
       setIsError(true);
       setError(e);
@@ -159,5 +156,5 @@ export function useDeleteFetcher() {
     }
   };
 
-  return { isSubmitting, isError, error, del };
+  return { data, isSubmitting, isError, error, del };
 }

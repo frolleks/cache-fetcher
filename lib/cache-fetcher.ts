@@ -1,4 +1,5 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios from "redaxios";
+import { Options } from "redaxios";
 
 /** Cache for storing fetched data */
 const cache = new Map();
@@ -6,18 +7,18 @@ const cache = new Map();
 /**
  * @typedef {Object} CacheFetcher
  * @property {function(string): Promise<{data: *, isLoading: boolean, isError: boolean, error: unknown}>} get
- * @property {function(string, *, string, AxiosRequestConfig): Promise<{data: *, isError: boolean, error: unknown}>} post
- * @property {function(string, *, string, AxiosRequestConfig): Promise<{data: *, isError: boolean, error: unknown}>} put
- * @property {function(string, AxiosRequestConfig): Promise<{isError: boolean, error: unknown}>} delete
+ * @property {function(string, *, string, Options): Promise<{data: *, isError: boolean, error: unknown}>} post
+ * @property {function(string, *, string, Options): Promise<{data: *, isError: boolean, error: unknown}>} put
+ * @property {function(string, Options): Promise<{isError: boolean, error: unknown}>} delete
  */
 export const cacheFetcher = {
   /**
    * Fetch data from the given URL using GET method
    * @param {string} url - The URL to fetch
-   * @param {AxiosRequestConfig} options - Options for the request
+   * @param {Options} [options={}] - Options for the request
    * @return {Promise<{data: *, isLoading: boolean, isError: boolean, error: unknown}>} The fetched data or an error
    */
-  get: async (url: string, options: AxiosRequestConfig) => {
+  get: async (url: string, options: Options = {}) => {
     if (cache.has(url)) {
       return {
         data: cache.get(url),
@@ -51,14 +52,14 @@ export const cacheFetcher = {
    * @param {string} url - The URL to fetch
    * @param {*} body - The body to include in the POST request
    * @param {string} [contentType="application/json"] - The content type of the body
-   * @param {AxiosRequestConfig} [options={}] - Additional options for the fetch request
+   * @param {Options} [options={}] - Additional options for the fetch request
    * @return {Promise<{data: *, isLoading: boolean, isError: boolean, error: unknown}>} The server response or an error
    */
   post: async (
     url: string,
     body: any,
     contentType: string = "application/json",
-    options: AxiosRequestConfig = {}
+    options: Options = {}
   ) => {
     let data;
     let isLoading = true;
@@ -87,14 +88,14 @@ export const cacheFetcher = {
    * @param {string} url - The URL to fetch
    * @param {*} body - The body to include in the PUT request
    * @param {string} [contentType="application/json"] - The content type of the body
-   * @param {AxiosRequestConfig} [options={}] - Additional options for the fetch request
+   * @param {Options} [options={}] - Additional options for the fetch request
    * @return {Promise<{data: *, isLoading: boolean, isError: boolean, error: unknown}>} The server response or an error
    */
   put: async (
     url: string,
     body: any,
     contentType: string = "application/json",
-    options: AxiosRequestConfig = {}
+    options: Options = {}
   ) => {
     let data;
     let isLoading = true;
@@ -121,10 +122,10 @@ export const cacheFetcher = {
   /**
    * Delete data from the given URL using DELETE method
    * @param {string} url - The URL to fetch
-   * @param {AxiosRequestConfig} [options={}] - Additional options for the fetch request
+   * @param {Options} [options={}] - Additional options for the fetch request
    * @return {Promise<{data: *, isLoading: boolean, isError: boolean, error: unknown}>} Status of deletion, data (if any), or an error
    */
-  delete: async (url: string, options: AxiosRequestConfig = {}) => {
+  delete: async (url: string, options: Options = {}) => {
     let data;
     let isLoading = true;
     let isError = false;
