@@ -44,8 +44,7 @@
   "files": [
     "LICENSE",
     "package.json",
-    "lib/",
-    "types/"
+    "dist/"
   ],
   "dependencies": {
     "node-fetch": "^3.3.2",
