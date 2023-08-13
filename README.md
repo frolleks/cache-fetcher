@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/cache-fetcher)](https://npmjs.org/package/cache-fetcher)
 
-A dead simple and small (670b minified + gzipped, 2kb minified) data fetcher for JavaScript and React.
+A dead simple and opinionated data fetcher for JavaScript and React.
 
 ## Installation
 
