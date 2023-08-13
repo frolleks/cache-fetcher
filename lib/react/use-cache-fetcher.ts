@@ -158,3 +158,103 @@ export function useDeleteFetcher() {
 
   return { data, isSubmitting, isError, error, del };
 }
+
+/**
+ * Custom hook to update partial data to the given URL using PATCH method
+ * @return {{data: *, isSubmitting: boolean, isError: boolean, error: unknown, patch: function(string, *, string, Object): Promise<void>}} An object containing the PATCH response, submission state, and a function to initiate the PATCH request
+ */
+export function usePatchFetcher() {
+  const [data, setData] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState<unknown>(null);
+
+  const patch = async (
+    url: string,
+    body: any,
+    contentType = "application/json",
+    options = {}
+  ) => {
+    setIsSubmitting(true);
+    setIsError(false);
+    setError(null);
+
+    try {
+      const result = await cacheFetcher.patch(url, body, contentType, options);
+      setData(result.data);
+
+      if (result.isError) {
+        setIsError(true);
+        setError(result.error);
+      }
+    } catch (e) {
+      setIsError(true);
+      setError(e);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return { data, isSubmitting, isError, error, patch };
+}
+
+/**
+ * Custom hook to fetch headers from the given URL using HEAD method
+ * @param {string} url - The URL to fetch
+ * @param {Options} [options={}] - Additional options for the fetch request
+ * @return {{headers: Object, status: number, isLoading: boolean, isError: boolean, error: unknown}} Headers and status code, or an error
+ */
+export function useHeadFetcher(url: string, options: Options = {}) {
+  const [headers, setHeaders] = useState<Headers | undefined>(undefined);
+  const [status, setStatus] = useState<number | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState<unknown>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await cacheFetcher.head(url, options);
+        setHeaders(result.headers);
+        setStatus(result.status); // Set the status code
+        setIsLoading(false);
+      } catch (e) {
+        setIsError(true);
+        setError(e);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [url, options]);
+
+  return { headers, status, isLoading, isError, error };
+}
+
+/**
+ * Custom hook to retrieve the communication options from the target URL using the OPTIONS method
+ * @param {string} url - The URL to fetch
+ * @param {Options} [options={}] - Additional options for the fetch request
+ * @return {{options: *, isLoading: boolean, isError: boolean, error: unknown}} The communication options or an error
+ */
+export function useOptionsFetcher(url: string, options: Options = {}) {
+  const [optionsResponse, setOptionsResponse] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState<unknown>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await cacheFetcher.options(url, options);
+
+      setOptionsResponse(result.options);
+      setIsLoading(false);
+      setIsError(result.isError);
+      setError(result.error);
+    };
+
+    fetchData();
+  }, [url, options]);
+
+  return { options: optionsResponse, isLoading, isError, error };
+}

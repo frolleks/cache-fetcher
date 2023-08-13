@@ -143,4 +143,83 @@ export const cacheFetcher = {
 
     return { data, isLoading, isError, error };
   },
+
+  /**
+   * Update data to the given URL using PATCH method
+   * @param {string} url - The URL to fetch
+   * @param {*} body - The body to include in the PATCH request
+   * @param {string} [contentType="application/json"] - The content type of the body
+   * @param {Options} [options={}] - Additional options for the fetch request
+   * @return {Promise<{data: *, isError: boolean, error: unknown}>} The server response or an error
+   */
+  patch: async (
+    url: string,
+    body: any,
+    contentType: string = "application/json",
+    options: Options = {}
+  ) => {
+    let data;
+    let isError = false;
+    let error;
+
+    try {
+      const headers = {
+        ...(options.headers || {}),
+        "Content-Type": contentType,
+      };
+      const response = await axios.patch(url, body, { headers, ...options });
+      data = response.data;
+    } catch (e) {
+      isError = true;
+      error = e;
+    }
+
+    return { data, isError, error };
+  },
+
+  /**
+   * Retrieve the headers and status code from the given URL using HEAD method
+   * @param {string} url - The URL to fetch
+   * @param {Options} [options={}] - Additional options for the fetch request
+   * @return {Promise<{headers: *, status: number, isError: boolean, error: unknown}>} The headers, status code, or an error
+   */
+  head: async (url: string, options: Options = {}) => {
+    let headers;
+    let status;
+    let isError = false;
+    let error;
+
+    try {
+      const response = await axios.head(url, options);
+      headers = response.headers;
+      status = response.status; // Retrieve the status code
+    } catch (e) {
+      isError = true;
+      error = e;
+    }
+
+    return { headers, status, isError, error };
+  },
+
+  /**
+   * Retrieve the communication options from the given URL using OPTIONS method
+   * @param {string} url - The URL to fetch
+   * @param {Options} [options={}] - Additional options for the fetch request
+   * @return {Promise<{options: *, isError: boolean, error: unknown}>} The communication options or an error
+   */
+  options: async (url: string, options: Options = {}) => {
+    let optionsResponse;
+    let isError = false;
+    let error;
+
+    try {
+      const response = await axios.options(url, options);
+      optionsResponse = response.data;
+    } catch (e) {
+      isError = true;
+      error = e;
+    }
+
+    return { options: optionsResponse, isError, error };
+  },
 };
