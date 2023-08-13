@@ -70,6 +70,8 @@ async function post(
     isError = true;
     error = e;
     isLoading = false;
+  } finally {
+    cache.delete(url);
   }
 
   return { data, isLoading, isError, error };
@@ -106,6 +108,8 @@ async function put(
     isError = true;
     error = e;
     isLoading = false;
+  } finally {
+    cache.delete(url);
   }
 
   return { data, isLoading, isError, error };
@@ -131,6 +135,8 @@ async function deleteData(url: string, options: Options = {}) {
     isError = true;
     error = e;
     isLoading = false;
+  } finally {
+    cache.delete(url);
   }
 
   return { data, isLoading, isError, error };
