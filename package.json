@@ -18,7 +18,8 @@
     }
   },
   "scripts": {
-    "build": "tsc",
+    "auto-release": "pnpm build && pnpm release",
+    "build": "rimraf dist && tsc",
     "prepare": "husky install",
     "release": "standard-version",
     "release:minor": "standard-version --release-as minor",
@@ -56,6 +57,7 @@
     "@types/node": "^20.4.10",
     "@types/react": "^18.2.20",
     "husky": "^8.0.3",
+    "rimraf": "^5.0.1",
     "standard-version": "^9.5.0",
     "typescript": "^5.1.6"
   }
