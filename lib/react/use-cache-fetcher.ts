@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { cacheFetcher } from "../cache-fetcher";
+import { AxiosRequestConfig } from "axios";
 
 /**
  * Custom hook to fetch data from the given URL using GET method
  * @param {string} url - The URL to fetch
+ * @param {AxiosRequestConfig} [options={}] - Additional options for the fetch request
  * @return {{data: *, isLoading: boolean, isError: boolean, error: unknown}} The fetched data or an error
  */
-export function useCacheFetcher(url: string) {
+export function useCacheFetcher(url: string, options: AxiosRequestConfig = {}) {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -14,18 +16,16 @@ export function useCacheFetcher(url: string) {
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true);
-
-      const result = await cacheFetcher.get(url);
+      const result = await cacheFetcher.get(url, options);
 
       setData(result.data);
-      setIsLoading(result.isLoading);
+      setIsLoading(false); // isLoading should be set to false after fetching
       setIsError(result.isError);
       setError(result.error);
     };
 
     fetchData();
-  }, [url]); // The effect will re-run whenever the URL changes
+  }, [url, options]); // Re-run the effect if URL or options change
 
   return { data, isLoading, isError, error };
 }
