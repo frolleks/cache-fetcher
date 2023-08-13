@@ -1,6 +1,7 @@
 # cache-fetcher
 
 [![npm](https://img.shields.io/npm/v/cache-fetcher)](https://npmjs.org/package/cache-fetcher)
+![npm](https://img.shields.io/npm/dm/cache-fetcher)
 
 A dead simple and opinionated data fetcher for JavaScript and React.
 
