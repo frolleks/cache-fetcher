@@ -6,11 +6,11 @@ import { cacheFetcher } from "../cache-fetcher";
  * @param {string} url - The URL to fetch
  * @return {{data: *, isLoading: boolean, isError: boolean, error: unknown}} The fetched data or an error
  */
-export function useCacheFetcher(url) {
+export function useCacheFetcher(url: string) {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-  const [error, setError] = useState(/** @type {any} */ (null));
+  const [error, setError] = useState<unknown>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +38,7 @@ export function usePostFetcher() {
   const [data, setData] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [error, setError] = useState(/** @type {any} */ (null));
+  const [error, setError] = useState<unknown>(null);
 
   /**
    * Function to perform a POST request.
@@ -47,7 +47,12 @@ export function usePostFetcher() {
    * @param {string} [contentType="application/json"] - The content type of the request.
    * @param {Object} [options={}] - Additional fetch options.
    */
-  const post = async (url, body, contentType, options) => {
+  const post = async (
+    url: string,
+    body: any,
+    contentType = "application/json",
+    options = {}
+  ) => {
     setIsSubmitting(true);
     setIsError(false);
     setError(null);
@@ -79,7 +84,7 @@ export function usePutFetcher() {
   const [data, setData] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [error, setError] = useState(/** @type {any} */ (null));
+  const [error, setError] = useState<unknown>(null);
 
   /**
    * Function to perform a PUT request.
@@ -89,8 +94,8 @@ export function usePutFetcher() {
    * @param {Object} [options={}] - Additional fetch options.
    */
   const put = async (
-    url,
-    body,
+    url: string,
+    body: any,
     contentType = "application/json",
     options = {}
   ) => {
@@ -124,7 +129,7 @@ export function usePutFetcher() {
 export function useDeleteFetcher() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [error, setError] = useState(/** @type {any} */ (null));
+  const [error, setError] = useState<unknown>(null);
 
   /**
    * Function to perform a DELETE request.
@@ -132,7 +137,7 @@ export function useDeleteFetcher() {
    * @param {Object} [options={}] - Additional fetch options.
    * @return {Promise<void>} A promise that resolves once the deletion is complete.
    */
-  const del = async (url, options = {}) => {
+  const del = async (url: string, options = {}) => {
     setIsSubmitting(true);
     setIsError(false);
     setError(null);

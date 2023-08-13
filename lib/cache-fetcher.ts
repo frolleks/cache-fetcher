@@ -1,3 +1,5 @@
+import { fetch } from "../utils/universal-fetch.js";
+
 /** Cache for storing fetched data */
 const cache = new Map();
 
@@ -13,7 +15,7 @@ export const cacheFetcher = {
    * @param {string} url - The URL to fetch
    * @return {Promise<{data: *, isLoading: boolean, isError: boolean, error: unknown}>} The fetched data or an error
    */
-  get: async (url) => {
+  get: async (url: string) => {
     // If the data is already cached, return it
     if (cache.has(url)) {
       return {
@@ -58,13 +60,18 @@ export const cacheFetcher = {
    * @param {RequestInit & { headers?: Record<string, string> }} [options={}] - Additional options for the fetch request
    * @return {Promise<{data: *, isError: boolean, error: unknown}>} The server response or an error
    */
-  post: async (url, body, contentType = "application/json", options = {}) => {
+  post: async (
+    url: string,
+    body: any,
+    contentType: string = "application/json",
+    options: RequestInit & { headers?: Record<string, string> } = {}
+  ) => {
     let data;
     let isError = false;
     let error;
 
     // Set the appropriate header and body format based on the content type
-    let headers = {};
+    let headers: Record<string, string> = { ...(options.headers || {}) };
     let formattedBody;
 
     switch (contentType) {
@@ -121,13 +128,18 @@ export const cacheFetcher = {
    * @param {RequestInit & { headers?: Record<string, string> }} [options={}] - Additional options for the fetch request
    * @return {Promise<{data: *, isError: boolean, error: unknown}>} The server response or an error
    */
-  put: async (url, body, contentType = "application/json", options = {}) => {
+  put: async (
+    url: string,
+    body: any,
+    contentType: string = "application/json",
+    options: RequestInit & { headers?: Record<string, string> } = {}
+  ) => {
     let data;
     let isError = false;
     let error;
 
     // Set the appropriate header and body format based on the content type
-    let headers = {};
+    let headers: Record<string, string> = { ...(options.headers || {}) };
     let formattedBody;
 
     switch (contentType) {
@@ -182,7 +194,10 @@ export const cacheFetcher = {
    * @param {RequestInit & { headers?: Record<string, string> }} [options={}] - Additional options for the fetch request
    * @return {Promise<{isError: boolean, error: unknown}>} Status of deletion or an error
    */
-  delete: async (url, options = {}) => {
+  delete: async (
+    url: string,
+    options: RequestInit & { headers?: Record<string, string> } = {}
+  ) => {
     let isError = false;
     let error;
 

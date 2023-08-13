@@ -4,15 +4,14 @@
     "module": "esnext",
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "declaration": true,
-    "emitDeclarationOnly": true,
-    "outDir": "types",
-    "allowJs": true,
-    "checkJs": true,
+    "baseUrl": ".",
+    "outDir": "dist",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node"
   },
-  "include": ["lib"]
+  "include": ["lib", "utils"]
 }

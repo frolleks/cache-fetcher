@@ -3,22 +3,22 @@
   "version": "0.2.2",
   "description": "A dead simple data fetcher",
   "type": "module",
-  "main": "lib/index.js",
-  "types": "types/index.d.ts",
+  "main": "dist/lib/index.js",
+  "types": "dist/lib/index.d.ts",
   "exports": {
     ".": {
-      "default": "./lib/index.js",
-      "import": "./lib/index.js",
-      "types": "./types/index.d.ts"
+      "default": "./dist/lib/index.js",
+      "import": "./dist/lib/index.js",
+      "types": "./dist/lib/index.d.ts"
     },
     "./react": {
-      "default": "./lib/react/index.js",
-      "import": "./lib/react/index.js",
-      "types": "./types/react/index.d.ts"
+      "default": "./dist/lib/react/index.js",
+      "import": "./dist/lib/react/index.js",
+      "types": "./dist/lib/react/index.d.ts"
     }
   },
   "scripts": {
-    "generate-types": "tsc",
+    "build": "tsc",
     "prepare": "husky install",
     "release": "standard-version",
     "release:minor": "standard-version --release-as minor",
@@ -48,6 +48,7 @@
     "types/"
   ],
   "dependencies": {
+    "node-fetch": "^3.3.2",
     "react": "^18.2.0"
   },
   "devDependencies": {
