@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { cacheFetcher } from "../cache-fetcher.js";
+import * as cacheFetcher from "../cache-fetcher.js";
 import { Options } from "redaxios";
 
 /**

@@ -20,7 +20,7 @@ A dead simple and opinionated data fetcher for JavaScript and React.
 Simply import it,
 
 ```js
-import { cacheFetcher } from "cache-fetcher";
+import * as cacheFetcher from "cache-fetcher";
 ```
 
 and make a request.

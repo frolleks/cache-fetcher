@@ -1,1 +1,1 @@
-export { cacheFetcher } from "./cache-fetcher.js";
+export * from "./cache-fetcher.js";
