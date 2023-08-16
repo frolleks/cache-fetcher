@@ -33,18 +33,18 @@ const res = await cacheFetcher.get(
 if (res.isLoading) console.log("Loading...");
 else console.log(res.data);
 
-if (res.isError) console.log(res.error);
+if (res.error) console.log(res.error);
 
 // or like this:
 
-const { data, isLoading, isError, error } = await cacheFetcher.get(
+const { data, isLoading, error } = await cacheFetcher.get(
   "https://jsonplaceholder.typicode.com/todos/1"
 );
 
 if (isLoading) console.log("Loading...");
 else console.log(data);
 
-if (isError) console.log(error);
+if (error) console.log(error);
 ```
 
 ### React
@@ -63,14 +63,14 @@ function MyComponent() {
   const url = "https://api.example.com/data";
 
   // Just call the useCacheFetcher hook with that URL
-  const { data, isLoading, isError, error } = useCacheFetcher(url);
+  const { data, isLoading, error } = useCacheFetcher(url);
 
   // Now you can handle the various states your data might be in:
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  if (isError) {
+  if (error) {
     return <div>Error: {error?.message}</div>;
   }
 
