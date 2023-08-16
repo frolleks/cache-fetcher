@@ -3,14 +3,14 @@ import { useCacheFetcher } from "cache-fetcher/react";
 function Todo() {
   const url = "https://jsonplaceholder.typicode.com/todos/1";
 
-  const { data, isLoading, isError, error } = useCacheFetcher(url);
+  const { data, isLoading, error } = useCacheFetcher(url);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  if (isError) {
-    return <div>Error: {error?.message}</div>;
+  if (error) {
+    return <div>Error: {error as string}</div>;
   }
 
   // Render your data!
