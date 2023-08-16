@@ -4,18 +4,19 @@
   "description": "A dead simple data fetcher",
   "sideEffects": false,
   "type": "module",
+  "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "default": "./dist/index.js"
     },
     "./react": {
-      "default": "./dist/react/index.js",
+      "types": "./dist/react/index.d.ts",
       "import": "./dist/react/index.js",
-      "types": "./dist/react/index.d.ts"
+      "default": "./dist/react/index.js"
     }
   },
   "scripts": {
