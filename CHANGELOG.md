@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/frolleks/cache-fetcher/compare/v0.4.3...v0.5.0) (2023-08-16)
+
+
+### Features
+
+* invalidate the cache when a POST, PUT, or DELETE request happens ([d62b4bd](https://github.com/frolleks/cache-fetcher/commit/d62b4bdcee57769c0bf73ec181f7170a96f54878))
+
 ### [0.4.3](https://github.com/frolleks/cache-fetcher/compare/v0.4.2...v0.4.3) (2023-08-13)
 
 ### [0.4.2](https://github.com/frolleks/cache-fetcher/compare/v0.4.1...v0.4.2) (2023-08-13)
