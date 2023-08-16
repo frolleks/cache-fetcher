@@ -42,7 +42,7 @@
   "bugs": {
     "url": "https://github.com/frolleks/cache-fetcher/issues"
   },
-  "homepage": "https://github.com/frolleks/cache-fetcher#readme",
+  "homepage": "https://cache-fetcher.vercel.app",
   "files": [
     "LICENSE",
     "package.json",
