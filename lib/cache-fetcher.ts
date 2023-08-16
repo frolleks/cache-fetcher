@@ -114,7 +114,7 @@ async function put(
  * @param {Options} [options={}] - Additional options for the fetch request
  * @return {Promise<{data: *, isLoading: boolean, error: unknown}>} Status of deletion, data (if any), or an error
  */
-async function deleteData(url: string, options: Options = {}) {
+async function del(url: string, options: Options = {}) {
   let data;
   let isLoading = true;
   let error;
@@ -209,4 +209,4 @@ async function options(url: string, options: Options = {}) {
   return { options: optionsResponse, error };
 }
 
-export { get, post, put, deleteData as delete, patch, head, options };
+export { get, post, put, del, patch, head, options };

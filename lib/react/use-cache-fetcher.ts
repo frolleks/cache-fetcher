@@ -124,7 +124,7 @@ export function useDeleteFetcher() {
     setError(null);
 
     try {
-      const result = await cacheFetcher.delete(url, {
+      const result = await cacheFetcher.del(url, {
         ...options,
       });
       setData(result.data);
