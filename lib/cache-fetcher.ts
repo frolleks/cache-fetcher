@@ -8,21 +8,19 @@ const cache = new Map();
  * Fetch data from the given URL using GET method
  * @param {string} url - The URL to fetch
  * @param {Options} [options={}] - Options for the request
- * @return {Promise<{data: *, isLoading: boolean, isError: boolean, error: unknown}>} The fetched data or an error
+ * @return {Promise<{data: *, isLoading: boolean, error: unknown}>} The fetched data or an error
  */
 async function get(url: string, options: Options = {}) {
   if (cache.has(url)) {
     return {
       data: cache.get(url),
       isLoading: false,
-      isError: false,
       error: null,
     };
   }
 
   let data;
   let isLoading = true;
-  let isError = false;
   let error;
 
   try {
@@ -31,12 +29,11 @@ async function get(url: string, options: Options = {}) {
     isLoading = false;
     cache.set(url, data);
   } catch (e) {
-    isError = true;
     error = e;
     isLoading = false;
   }
 
-  return { data, isLoading, isError, error };
+  return { data, isLoading, error };
 }
 
 /**
@@ -45,7 +42,7 @@ async function get(url: string, options: Options = {}) {
  * @param {*} body - The body to include in the POST request
  * @param {string} [contentType="application/json"] - The content type of the body
  * @param {Options} [options={}] - Additional options for the fetch request
- * @return {Promise<{data: *, isLoading: boolean, isError: boolean, error: unknown}>} The server response or an error
+ * @return {Promise<{data: *, isLoading: boolean, error: unknown}>} The server response or an error
  */
 async function post(
   url: string,
@@ -55,7 +52,6 @@ async function post(
 ) {
   let data;
   let isLoading = true;
-  let isError = false;
   let error;
 
   try {
@@ -67,14 +63,13 @@ async function post(
     data = response.data;
     isLoading = false;
   } catch (e) {
-    isError = true;
     error = e;
     isLoading = false;
   } finally {
     cache.delete(url);
   }
 
-  return { data, isLoading, isError, error };
+  return { data, isLoading, error };
 }
 
 /**
@@ -83,7 +78,7 @@ async function post(
  * @param {*} body - The body to include in the PUT request
  * @param {string} [contentType="application/json"] - The content type of the body
  * @param {Options} [options={}] - Additional options for the fetch request
- * @return {Promise<{data: *, isLoading: boolean, isError: boolean, error: unknown}>} The server response or an error
+ * @return {Promise<{data: *, isLoading: boolean, error: unknown}>} The server response or an error
  */
 async function put(
   url: string,
@@ -93,7 +88,6 @@ async function put(
 ) {
   let data;
   let isLoading = true;
-  let isError = false;
   let error;
 
   try {
@@ -105,26 +99,24 @@ async function put(
     data = response.data;
     isLoading = false;
   } catch (e) {
-    isError = true;
     error = e;
     isLoading = false;
   } finally {
     cache.delete(url);
   }
 
-  return { data, isLoading, isError, error };
+  return { data, isLoading, error };
 }
 
 /**
  * Delete data from the given URL using DELETE method
  * @param {string} url - The URL to fetch
  * @param {Options} [options={}] - Additional options for the fetch request
- * @return {Promise<{data: *, isLoading: boolean, isError: boolean, error: unknown}>} Status of deletion, data (if any), or an error
+ * @return {Promise<{data: *, isLoading: boolean, error: unknown}>} Status of deletion, data (if any), or an error
  */
 async function deleteData(url: string, options: Options = {}) {
   let data;
   let isLoading = true;
-  let isError = false;
   let error;
 
   try {
@@ -132,14 +124,13 @@ async function deleteData(url: string, options: Options = {}) {
     data = response.data;
     isLoading = false;
   } catch (e) {
-    isError = true;
     error = e;
     isLoading = false;
   } finally {
     cache.delete(url);
   }
 
-  return { data, isLoading, isError, error };
+  return { data, isLoading, error };
 }
 
 /**
@@ -148,7 +139,7 @@ async function deleteData(url: string, options: Options = {}) {
  * @param {*} body - The body to include in the PATCH request
  * @param {string} [contentType="application/json"] - The content type of the body
  * @param {Options} [options={}] - Additional options for the fetch request
- * @return {Promise<{data: *, isError: boolean, error: unknown}>} The server response or an error
+ * @return {Promise<{data: *, error: unknown}>} The server response or an error
  */
 async function patch(
   url: string,
@@ -157,7 +148,6 @@ async function patch(
   options: Options = {}
 ) {
   let data;
-  let isError = false;
   let error;
 
   try {
@@ -171,23 +161,21 @@ async function patch(
     });
     data = response.data;
   } catch (e) {
-    isError = true;
     error = e;
   }
 
-  return { data, isError, error };
+  return { data, error };
 }
 
 /**
  * Retrieve the headers and status code from the given URL using HEAD method
  * @param {string} url - The URL to fetch
  * @param {Options} [options={}] - Additional options for the fetch request
- * @return {Promise<{headers: *, status: number, isError: boolean, error: unknown}>} The headers, status code, or an error
+ * @return {Promise<{headers: *, status: number, error: unknown}>} The headers, status code, or an error
  */
 async function head(url: string, options: Options = {}) {
   let headers;
   let status;
-  let isError = false;
   let error;
 
   try {
@@ -195,33 +183,30 @@ async function head(url: string, options: Options = {}) {
     headers = response.headers;
     status = response.status; // Retrieve the status code
   } catch (e) {
-    isError = true;
     error = e;
   }
 
-  return { headers, status, isError, error };
+  return { headers, status, error };
 }
 
 /**
  * Retrieve the communication options from the given URL using OPTIONS method
  * @param {string} url - The URL to fetch
  * @param {Options} [options={}] - Additional options for the fetch request
- * @return {Promise<{options: *, isError: boolean, error: unknown}>} The communication options or an error
+ * @return {Promise<{options: *, error: unknown}>} The communication options or an error
  */
 async function options(url: string, options: Options = {}) {
   let optionsResponse;
-  let isError = false;
   let error;
 
   try {
     const response = await axios.options(url, options);
     optionsResponse = response.data;
   } catch (e) {
-    isError = true;
     error = e;
   }
 
-  return { options: optionsResponse, isError, error };
+  return { options: optionsResponse, error };
 }
 
 export { get, post, put, deleteData as delete, patch, head, options };
