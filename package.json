@@ -17,6 +17,11 @@
       "types": "./dist/react/index.d.ts",
       "import": "./dist/react/index.js",
       "default": "./dist/react/index.js"
+    },
+    "./solid": {
+      "types": "./dist/solid/index.d.ts",
+      "import": "./dist/solid/index.js",
+      "default": "./dist/solid/index.js"
     }
   },
   "scripts": {
@@ -50,7 +55,8 @@
     "dist/"
   ],
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "solid-js": "^1.7.11"
   },
   "dependencies": {
     "redaxios": "^0.5.1"
