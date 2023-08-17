@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.1](https://github.com/frolleks/cache-fetcher/compare/v0.6.0...v0.6.1) (2023-08-17)
+
+
+### Bug Fixes
+
+* **solid:** return the values of the Accessors instead of the functions ([8e8bdc7](https://github.com/frolleks/cache-fetcher/commit/8e8bdc79134a6ea6af33dc460871933f33c2e39a))
+
 ## [0.6.0](https://github.com/frolleks/cache-fetcher/compare/v0.5.2...v0.6.0) (2023-08-17)
 
 
