@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.0](https://github.com/frolleks/cache-fetcher/compare/v0.5.2...v0.6.0) (2023-08-17)
+
+
+### Features
+
+* add solid.js wrapper ([a2a468b](https://github.com/frolleks/cache-fetcher/commit/a2a468bf20d12ec05748bd71ce0501c6f5dd15ca))
+
 ### [0.5.2](https://github.com/frolleks/cache-fetcher/compare/v0.5.1...v0.5.2) (2023-08-16)
 
 ### [0.5.1](https://github.com/frolleks/cache-fetcher/compare/v0.5.0...v0.5.1) (2023-08-16)
