@@ -13,12 +13,15 @@ function createCacheFetcher(url: string, options: Options = {}) {
   const [isLoading, setIsLoading] = createSignal(true);
   const [error, setError] = createSignal<unknown>(null);
 
-  createEffect(async () => {
-    setIsLoading(true);
-    const result = await cacheFetcher.get(url, options);
-    setData(result.data);
-    setIsLoading(result.isLoading);
-    setError(result.error);
+  createEffect(() => {
+    const fetchData = async () => {
+      const result = await cacheFetcher.get(url, options);
+      setData(result.data);
+      setIsLoading(result.isLoading);
+      setError(result.error);
+    };
+
+    fetchData();
   });
 
   return { data: data(), isLoading: isLoading(), error: error() };
@@ -39,7 +42,6 @@ function createPostFetcher() {
     contentType = "application/json",
     options = {}
   ) => {
-    setIsSubmitting(true);
     setError(null);
 
     try {
@@ -70,7 +72,6 @@ function createPutFetcher() {
     contentType = "application/json",
     options = {}
   ) => {
-    setIsSubmitting(true);
     setError(null);
 
     try {
@@ -96,7 +97,6 @@ function createDeleteFetcher() {
   const [error, setError] = createSignal<unknown>(null);
 
   const del = async (url: string, options = {}) => {
-    setIsSubmitting(true);
     setError(null);
 
     try {
@@ -129,7 +129,6 @@ function createPatchFetcher() {
     contentType = "application/json",
     options = {}
   ) => {
-    setIsSubmitting(true);
     setError(null);
 
     try {
@@ -157,16 +156,20 @@ function createHeadFetcher(url: string, options: Options = {}) {
   const [isLoading, setIsLoading] = createSignal(true);
   const [error, setError] = createSignal<unknown>(null);
 
-  createEffect(async () => {
-    try {
-      const result = await cacheFetcher.head(url, options);
-      setHeaders(result.headers);
-      setStatus(result.status); // Set the status code
-      setIsLoading(false);
-    } catch (e) {
-      setError(e);
-      setIsLoading(false);
-    }
+  createEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await cacheFetcher.head(url, options);
+        setHeaders(result.headers);
+        setStatus(result.status); // Set the status code
+        setIsLoading(false);
+      } catch (e) {
+        setError(e);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
   });
 
   return {
@@ -188,12 +191,16 @@ function createOptionsFetcher(url: string, options: Options = {}) {
   const [isLoading, setIsLoading] = createSignal(true);
   const [error, setError] = createSignal<unknown>(null);
 
-  createEffect(async () => {
-    const result = await cacheFetcher.options(url, options);
+  createEffect(() => {
+    const fetchData = async () => {
+      const result = await cacheFetcher.options(url, options);
 
-    setOptionsResponse(result.options);
-    setIsLoading(false);
-    setError(result.error);
+      setOptionsResponse(result.options);
+      setIsLoading(false);
+      setError(result.error);
+    };
+
+    fetchData();
   });
 
   return { options: optionsResponse(), isLoading: isLoading(), error: error() };
