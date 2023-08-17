@@ -6,9 +6,9 @@ const cache = new Map();
 
 /**
  * Fetch data from the given URL using GET method
- * @param {string} url - The URL to fetch
- * @param {Options} [options={}] - Options for the request
- * @return {Promise<{data: *, isLoading: boolean, error: unknown}>} The fetched data or an error
+ * @param url - The URL to fetch
+ * @param options - Options for the request
+ * @return The fetched data or an error
  */
 async function get(url: string, options: Options = {}) {
   if (cache.has(url)) {
@@ -38,11 +38,11 @@ async function get(url: string, options: Options = {}) {
 
 /**
  * Fetch data from the given URL using POST method
- * @param {string} url - The URL to fetch
- * @param {*} body - The body to include in the POST request
- * @param {string} [contentType="application/json"] - The content type of the body
- * @param {Options} [options={}] - Additional options for the fetch request
- * @return {Promise<{data: *, isLoading: boolean, error: unknown}>} The server response or an error
+ * @param url - The URL to fetch
+ * @param body - The body to include in the POST request
+ * @param contentType - The content type of the body
+ * @param options - Additional options for the fetch request
+ * @return The server response or an error
  */
 async function post(
   url: string,
@@ -74,11 +74,11 @@ async function post(
 
 /**
  * Update data to the given URL using PUT method
- * @param {string} url - The URL to fetch
- * @param {*} body - The body to include in the PUT request
- * @param {string} [contentType="application/json"] - The content type of the body
- * @param {Options} [options={}] - Additional options for the fetch request
- * @return {Promise<{data: *, isLoading: boolean, error: unknown}>} The server response or an error
+ * @param url - The URL to fetch
+ * @param body - The body to include in the PUT request
+ * @param contentType - The content type of the body
+ * @param options - Additional options for the fetch request
+ * @return The server response or an error
  */
 async function put(
   url: string,
@@ -110,9 +110,9 @@ async function put(
 
 /**
  * Delete data from the given URL using DELETE method
- * @param {string} url - The URL to fetch
- * @param {Options} [options={}] - Additional options for the fetch request
- * @return {Promise<{data: *, isLoading: boolean, error: unknown}>} Status of deletion, data (if any), or an error
+ * @param url - The URL to fetch
+ * @param options - Additional options for the fetch request
+ * @return Status of deletion, data (if any), or an error
  */
 async function del(url: string, options: Options = {}) {
   let data;
@@ -135,11 +135,11 @@ async function del(url: string, options: Options = {}) {
 
 /**
  * Update data to the given URL using PATCH method
- * @param {string} url - The URL to fetch
- * @param {*} body - The body to include in the PATCH request
- * @param {string} [contentType="application/json"] - The content type of the body
- * @param {Options} [options={}] - Additional options for the fetch request
- * @return {Promise<{data: *, error: unknown}>} The server response or an error
+ * @param url - The URL to fetch
+ * @param body - The body to include in the PATCH request
+ * @param contentType - The content type of the body
+ * @param options - Additional options for the fetch request
+ * @return The server response or an error
  */
 async function patch(
   url: string,
@@ -169,9 +169,9 @@ async function patch(
 
 /**
  * Retrieve the headers and status code from the given URL using HEAD method
- * @param {string} url - The URL to fetch
- * @param {Options} [options={}] - Additional options for the fetch request
- * @return {Promise<{headers: *, status: number, error: unknown}>} The headers, status code, or an error
+ * @param url - The URL to fetch
+ * @param options - Additional options for the fetch request
+ * @return The headers, status code, or an error
  */
 async function head(url: string, options: Options = {}) {
   let headers;
@@ -191,9 +191,9 @@ async function head(url: string, options: Options = {}) {
 
 /**
  * Retrieve the communication options from the given URL using OPTIONS method
- * @param {string} url - The URL to fetch
- * @param {Options} [options={}] - Additional options for the fetch request
- * @return {Promise<{options: *, error: unknown}>} The communication options or an error
+ * @param url - The URL to fetch
+ * @param options - Additional options for the fetch request
+ * @return The communication options or an error
  */
 async function options(url: string, options: Options = {}) {
   let optionsResponse;

@@ -4,9 +4,9 @@ import { Options } from "redaxios";
 
 /**
  * Custom hook to fetch data from the given URL using GET method
- * @param {string} url - The URL to fetch
- * @param {Options} [options={}] - Additional options for the fetch request
- * @return {{data: *, isLoading: boolean, error: unknown}} The fetched data or an error
+ * @param url - The URL to fetch
+ * @param options - Additional options for the fetch request
+ * @return The fetched data or an error
  */
 export function useCacheFetcher(url: string, options: Options = {}) {
   const [data, setData] = useState(null);
@@ -30,7 +30,7 @@ export function useCacheFetcher(url: string, options: Options = {}) {
 
 /**
  * Custom hook to fetch data using POST method
- * @return {{data: *, isSubmitting: boolean, error: unknown, post: function(string, *, string, Object): Promise<void>}} An object containing the POST response, submission state, and a function to initiate the POST request
+ * @return An object containing the POST response, submission state, and a function to initiate the POST request
  */
 export function usePostFetcher() {
   const [data, setData] = useState(null);
@@ -68,7 +68,7 @@ export function usePostFetcher() {
 
 /**
  * Custom hook to update data on the server using the PUT method
- * @return {{data: *, isSubmitting: boolean, error: unknown, put: function(string, *, string, Object): Promise<void>}} An object containing the PUT response, submission state, and a function to initiate the PUT request
+ * @return An object containing the PUT response, submission state, and a function to initiate the PUT request
  */
 export function usePutFetcher() {
   const [data, setData] = useState(null);
@@ -106,7 +106,7 @@ export function usePutFetcher() {
 
 /**
  * Custom hook to delete data from the server using the DELETE method
- * @return {{data: *, isSubmitting: boolean, error: unknown, del: function(string, Object): Promise<void>}} An object containing the DELETE submission state, and a function to initiate the DELETE request
+ * @return An object containing the DELETE submission state, and a function to initiate the DELETE request
  */
 export function useDeleteFetcher() {
   const [data, setData] = useState(null);
@@ -140,7 +140,7 @@ export function useDeleteFetcher() {
 
 /**
  * Custom hook to update partial data to the given URL using PATCH method
- * @return {{data: *, isSubmitting: boolean, error: unknown, patch: function(string, *, string, Object): Promise<void>}} An object containing the PATCH response, submission state, and a function to initiate the PATCH request
+ * @return An object containing the PATCH response, submission state, and a function to initiate the PATCH request
  */
 export function usePatchFetcher() {
   const [data, setData] = useState(null);
@@ -171,9 +171,9 @@ export function usePatchFetcher() {
 
 /**
  * Custom hook to fetch headers from the given URL using HEAD method
- * @param {string} url - The URL to fetch
- * @param {Options} [options={}] - Additional options for the fetch request
- * @return {{headers: Object, status: number, isLoading: boolean, error: unknown}} Headers and status code, or an error
+ * @param url - The URL to fetch
+ * @param options - Additional options for the fetch request
+ * @return Headers and status code, or an error
  */
 export function useHeadFetcher(url: string, options: Options = {}) {
   const [headers, setHeaders] = useState<Headers | undefined>(undefined);
@@ -202,9 +202,9 @@ export function useHeadFetcher(url: string, options: Options = {}) {
 
 /**
  * Custom hook to retrieve the communication options from the target URL using the OPTIONS method
- * @param {string} url - The URL to fetch
- * @param {Options} [options={}] - Additional options for the fetch request
- * @return {{options: *, isLoading: boolean, error: unknown}} The communication options or an error
+ * @param url - The URL to fetch
+ * @param options - Additional options for the fetch request
+ * @return The communication options or an error
  */
 export function useOptionsFetcher(url: string, options: Options = {}) {
   const [optionsResponse, setOptionsResponse] = useState(null);
