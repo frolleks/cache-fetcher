@@ -21,7 +21,7 @@ function createCacheFetcher(url: string, options: Options = {}) {
     setError(result.error);
   });
 
-  return { data, isLoading, error };
+  return { data: data(), isLoading: isLoading(), error: error() };
 }
 
 /**
@@ -52,7 +52,7 @@ function createPostFetcher() {
     }
   };
 
-  return { data, isSubmitting, error, post };
+  return { data: data(), isSubmitting: isSubmitting(), error: error(), post };
 }
 
 /**
@@ -83,7 +83,7 @@ function createPutFetcher() {
     }
   };
 
-  return { data, isSubmitting, error, put };
+  return { data: data(), isSubmitting: isSubmitting(), error: error(), put };
 }
 
 /**
@@ -111,7 +111,7 @@ function createDeleteFetcher() {
     }
   };
 
-  return { data, isSubmitting, error, del };
+  return { data: data(), isSubmitting: isSubmitting(), error: error(), del };
 }
 
 /**
@@ -142,7 +142,7 @@ function createPatchFetcher() {
     }
   };
 
-  return { data, isSubmitting, error, patch };
+  return { data: data(), isSubmitting: isSubmitting(), error: error(), patch };
 }
 
 /**
@@ -169,7 +169,12 @@ function createHeadFetcher(url: string, options: Options = {}) {
     }
   });
 
-  return { headers, status, isLoading, error };
+  return {
+    headers: headers(),
+    status: status(),
+    isLoading: isLoading(),
+    error: error(),
+  };
 }
 
 /**
@@ -191,7 +196,7 @@ function createOptionsFetcher(url: string, options: Options = {}) {
     setError(result.error);
   });
 
-  return { options: optionsResponse, isLoading, error };
+  return { options: optionsResponse(), isLoading: isLoading(), error: error() };
 }
 
 export {
