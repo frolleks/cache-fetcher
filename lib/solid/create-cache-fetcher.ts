@@ -2,6 +2,12 @@ import { Options } from "redaxios";
 import { createEffect, createSignal } from "solid-js";
 import * as cacheFetcher from "../cache-fetcher.js";
 
+/**
+ * Create a GET fetcher with caching.
+ * @param url - The URL to fetch data from.
+ * @param options - Optional configuration for the request.
+ * @returns An object containing the data, loading state, and any error.
+ */
 function createCacheFetcher(url: string, options: Options = {}) {
   const [data, setData] = createSignal(null);
   const [isLoading, setIsLoading] = createSignal(true);
@@ -18,6 +24,10 @@ function createCacheFetcher(url: string, options: Options = {}) {
   return { data, isLoading, error };
 }
 
+/**
+ * Create a POST fetcher.
+ * @returns An object containing the data, submitting state, any error, and a function to execute the post.
+ */
 function createPostFetcher() {
   const [data, setData] = createSignal(null);
   const [isSubmitting, setIsSubmitting] = createSignal(true);
@@ -45,6 +55,10 @@ function createPostFetcher() {
   return { data, isSubmitting, error, post };
 }
 
+/**
+ * Create a PUT fetcher.
+ * @returns An object containing the data, submitting state, any error, and a function to execute the put.
+ */
 function createPutFetcher() {
   const [data, setData] = createSignal(null);
   const [isSubmitting, setIsSubmitting] = createSignal(true);
@@ -72,17 +86,15 @@ function createPutFetcher() {
   return { data, isSubmitting, error, put };
 }
 
+/**
+ * Create a DELETE fetcher.
+ * @returns An object containing the data, submitting state, any error, and a function to execute the delete.
+ */
 function createDeleteFetcher() {
   const [data, setData] = createSignal(null);
   const [isSubmitting, setIsSubmitting] = createSignal(false);
   const [error, setError] = createSignal<unknown>(null);
 
-  /**
-   * Function to perform a DELETE request.
-   * @param {string} url - The URL to send the DELETE request to.
-   * @param {Object} [options={}] - Additional fetch options.
-   * @return {Promise<void>} A promise that resolves once the deletion is complete.
-   */
   const del = async (url: string, options = {}) => {
     setIsSubmitting(true);
     setError(null);
@@ -102,6 +114,10 @@ function createDeleteFetcher() {
   return { data, isSubmitting, error, del };
 }
 
+/**
+ * Create a PATCH fetcher.
+ * @returns An object containing the data, submitting state, any error, and a function to execute the patch.
+ */
 function createPatchFetcher() {
   const [data, setData] = createSignal(null);
   const [isSubmitting, setIsSubmitting] = createSignal(false);
@@ -129,6 +145,12 @@ function createPatchFetcher() {
   return { data, isSubmitting, error, patch };
 }
 
+/**
+ * Create a HEAD fetcher to retrieve headers and status.
+ * @param url - The URL to send the HEAD request to.
+ * @param options - Optional configuration for the request.
+ * @returns An object containing the headers, status code, loading state, and any error.
+ */
 function createHeadFetcher(url: string, options: Options = {}) {
   const [headers, setHeaders] = createSignal<Headers | undefined>(undefined);
   const [status, setStatus] = createSignal<number | undefined>(undefined);
@@ -150,6 +172,12 @@ function createHeadFetcher(url: string, options: Options = {}) {
   return { headers, status, isLoading, error };
 }
 
+/**
+ * Create an OPTIONS fetcher to retrieve the supported methods.
+ * @param url - The URL to send the OPTIONS request to.
+ * @param options - Optional configuration for the request.
+ * @returns An object containing the supported options, loading state, and any error.
+ */
 function createOptionsFetcher(url: string, options: Options = {}) {
   const [optionsResponse, setOptionsResponse] = createSignal(null);
   const [isLoading, setIsLoading] = createSignal(true);
